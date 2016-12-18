@@ -2,47 +2,46 @@ var express = require('express');                 // framework
 
 var bodyParser = require('body-parser');          // parse json
 var mongoose = require('mongoose');               // use mongodb
-var methodOverride = require("method-override");  // deploy and custom http verb 
+var methodOverride = require("method-override");  // deploy and custom http verb
+var morgan = require("morgan");                   // log every request to the console
+var cors = require('cors');
 
 var app = express();
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.use(cors());
 
-var router = express.Router();
-
-router.get("/", function(req, res){
-  res.send("Hello World .Nodejs");
-});
-
-app.use(router);
-
-// Dependence of Controller tvshows
-require('./models/TVShow');
+// Dependence of Controllers
+require('./models/Login');
+require('./models/Session');
 
 // Controllers
-var TVShowCtrl = require("./controllers/tvshows");
-var tvshows = express.Router();
+var LoginCtrl = require("./controllers/logins");
+var SessionsCtrl = require("./controllers/sessions");
 
-// On GET
-tvshows.route("/tvshows")
-  .get(TVShowCtrl.findAllTVShows);
+// Router
+var router = express.Router();
 
-// On POST
-tvshows.route("/tvshows")
-  .post(TVShowCtrl.addTVShow);
+// Route of login (GET/PUT)
+router.route("/login")
+      .get(LoginCtrl.findById)
+      .put(LoginCtrl.updateLogin);
 
-// On GET/PUT/DELETE
-tvshows.route("/tvshows/:id")
-  .get(TVShowCtrl.findById)
-  .put(TVShowCtrl.updateTVShow)
-  .delete(TVShowCtrl.deleteTVShow);
+// Route of session (GET/POST/PUT/DELETE)
+router.route("/session")
+      .get(SessionsCtrl.findById)
+      .post(SessionsCtrl.addSession)
+      .put(SessionsCtrl.updateSession)
+      .delete(SessionsCtrl.deleteSession);
 
-app.use("/api", tvshows);
+// Use api
+app.use("/api", router);
 
 // Connect to local mongodb
-mongoose.connect('mongodb://localhost/tvshows', function(err, res) {  
+mongoose.connect('mongodb://localhost/Cocheras', function(err, res) {  
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   }
@@ -50,5 +49,4 @@ mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
   app.listen(8080, function() {
     console.log("Node server running on http://localhost:8080");
   });
-
 });

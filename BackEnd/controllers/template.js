@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var TVShow = mongoose.model("TVShow");
+var Session = mongoose.model("Session");
 
 // GET - Return all tvshows in the DB
 exports.findAllTVShows = function(req, res){

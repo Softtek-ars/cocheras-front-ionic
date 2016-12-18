@@ -1,18 +1,38 @@
-<ion-list>
+<ion-header>
+	<ion-navbar>
+	<ion-title>Login</ion-title>
+	</ion-navbar>
+	<ion-card>
+		<ion-card-content>
+			<img src="./img/logo-softtek.jpg" alt="Softtek"/>
+			<ion-card-title>
+				Inicio de Sesion
+			</ion-card-title>
+			<p>
+				Por favor ingrese sus credenciales para poder ingresar al sistema.
+			</p>
+		</ion-card-content>
+	</ion-card>
+	
+	<ion-list padding>
+		<ion-item>
+		<ion-label stacked>Username</ion-label>
+		<ion-input type="text" value=""></ion-input>
+		</ion-item>
 
-  <ion-item>
-    <ion-label fixed>Username</ion-label>
-    <ion-input type="text" value=""></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-
-</ion-list>
-
-<div padding>
-	<button primary block ion-button round (click)="login()">Ingresar</button>
-	<button primary block ion-button round (click)="exitApp()">Salir</button>
-</div>
+		<ion-item>
+		<ion-label stacked>Password</ion-label>
+		<ion-input type="password"></ion-input>
+		</ion-item>
+		
+		<ion-item>
+		  <ion-label item-center>Guardar credenciales</ion-label>
+		  <ion-checkbox item-content color="green" checked="true"></ion-checkbox>
+		</ion-item>
+		
+		<ion-item>
+		  <button ion-button button full round (click)="login()" button-large>Ingresar</button>
+		  <button ion-button button full round (click)="exitApp()" button-large>Salir</button>
+		</ion-item>
+	</ion-list>
+</ion-header>

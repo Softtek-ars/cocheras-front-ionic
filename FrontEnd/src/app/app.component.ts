@@ -3,14 +3,15 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 //import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
-import { LoginProvider } from '../providers/login-provider';
+//import { LoginPage } from '../pages/login/login';
+//import { LoginProvider } from '../providers/login-provider';
+import { IndexPage } from '../pages/index/index';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = LoginPage;
+  rootPage = IndexPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
