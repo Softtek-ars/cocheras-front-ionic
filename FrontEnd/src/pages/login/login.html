@@ -4,25 +4,22 @@
 	</ion-navbar>
 	<ion-card>
 		<ion-card-content>
-			<img src="./img/logo-softtek.jpg" alt="Softtek"/>
+			<img src="/assets/img/logo-softtek.png" width="40px" style="display:inline-block" height="60px" alt="Softtek Logo"/>
 			<ion-card-title>
 				Inicio de Sesion
 			</ion-card-title>
-			<p>
-				Por favor ingrese sus credenciales para poder ingresar al sistema.
-			</p>
 		</ion-card-content>
 	</ion-card>
 	
 	<ion-list padding>
 		<ion-item>
 		<ion-label stacked>Username</ion-label>
-		<ion-input type="text" value=""></ion-input>
+		<ion-input [(ngModel)]="usuario" type="text" value=""></ion-input>
 		</ion-item>
 
 		<ion-item>
 		<ion-label stacked>Password</ion-label>
-		<ion-input type="password"></ion-input>
+		<ion-input [(ngModel)]="password" type="password"></ion-input>
 		</ion-item>
 		
 		<ion-item>

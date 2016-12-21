@@ -17,10 +17,12 @@ app.use(cors());
 // Dependence of Controllers
 require('./models/Login');
 require('./models/Session');
+require('./models/garage');
 
 // Controllers
 var LoginCtrl = require("./controllers/logins");
 var SessionsCtrl = require("./controllers/sessions");
+var GaragesCtrl = require('./controllers/garages');
 
 // Router
 var router = express.Router();
@@ -37,6 +39,15 @@ router.route("/session")
       .put(SessionsCtrl.updateSession)
       .delete(SessionsCtrl.deleteSession);
 
+router.route('/garages')
+	  .get(GaragesCtrl.findAll)
+	  .post(GaragesCtrl.add);
+
+router.route('/garages/:id') 
+	  .get(GaragesCtrl.findById)
+	  .put(GaragesCtrl.update)
+	  .delete(GaragesCtrl.delete);
+	  
 // Use api
 app.use("/api", router);
 

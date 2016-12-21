@@ -9,6 +9,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { IndexPage } from '../pages/index/index';
 
+import { Garages } from '../providers/garages';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -32,6 +34,6 @@ import { IndexPage } from '../pages/index/index';
 	LoginPage,
 	IndexPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Garages]
 })
 export class AppModule {}

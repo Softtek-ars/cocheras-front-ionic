@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -8,15 +8,28 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
 @Injectable()
 export class LoginProvider {
-
-  constructor(public http: Http) {
-    console.log('Hello LoginProvider Provider');
-  }
+    static get parameters() {
+        return [[Http]];
+    }
+	
+	constructor(public http: Http) {
+	}
   
-  login (username, password){
-    console.log('Logn In');
-	return "OK";
-  };
+	login (username, password){
+		//build header options
+		//let headers = new Headers({ 'Content-Type': 'application/json' });
+		//let options = new RequestOptions({ headers: headers });
+		
+		let body = { 'username': username, 'password': password };
+
+		//let body = JSON.stringify( { username, password });
+		
+		var url = 'http://localhost:8080/api/session';
+        var response = this.http.post(url, body).map(response => response.json());
+        
+		return response;
+	}
 }

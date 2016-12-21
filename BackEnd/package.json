@@ -9,6 +9,7 @@
     "body-parser": "~1.15.1",
     "cors": "^2.8.1",
     "express": "~4.13.4",
+    "ldap": "^0.7.1",
     "md5": "^2.2.1",
     "method-override": "^2.3.7",
     "mongoose": "~4.6.1",
