@@ -3,6 +3,7 @@ var md5 = require('md5');
 var ldap = require('ldap');
 
 var Session = mongoose.model("Session");
+var Login = mongoose.model("Login");
 
 //GET - Return a Session with specified ID
 exports.findById = function(req, res) {  
@@ -21,24 +22,35 @@ exports.findById = function(req, res) {
 exports.addSession = function(req, res) {  
     console.log('POST - Session.addSession\n\n');
     
-    var username = req.body.username;
+    var userId = req.body.username;
     var password = req.body.password;
     var date = Date.now();
+    var userName = "";
 
-    console.log('Username: ' + username);
+    console.log('UserId: ' + userId);
     console.log('Password: ' + password);
     console.log('Date: ' + date);
 
     // Check session open
-    Session.find({id: username}).exec(function(err, session) {
+    Session.find({id: userId}).exec(function(err, session) {
         if(err){
             console.log('HTTP Error [500]: ' + err.message);
             return res.status(500).send(err.message);
         }
         else{
             // Verify access
-            //var LoginCtrl = require("./controllers/logins");
-            //var response = LoginCtrl.findById(req, res);
+            Login.find({id: userId}).exec(function(err, login) {
+                if(err){
+                    console.log('HTTP Error [500]: ' + err.message);
+                    return res.status(500).send(err.message);
+                }
+                else{
+                    // Login OK
+                    userName = login[0].name;
+                }
+            });
+
+            console.log('\nUserName: ' + userName)
 
             // Check LDAP access
 
@@ -115,10 +127,10 @@ exports.addSession = function(req, res) {
             // New session
             if (!token){
                 //create token
-                token = md5(username + password + date);
+                token = md5(userId + password + date);
 
                 var newSession = new Session({
-                    id:             username,
+                    id:             userId,
                     token:          token,
                     lastConnect:    date
                 });
