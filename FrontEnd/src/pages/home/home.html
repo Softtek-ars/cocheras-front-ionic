@@ -11,23 +11,24 @@
 </ion-header>
  
 <ion-content>
- <ion-list no-lines>
- 
-    <ion-item-sliding *ngFor="let garage of garages">
- 
-      <ion-item>
- 
-        <ion-label item-left>Cochera: {{garage.garage}}</ion-label>
-        <ion-label >{{garage.estado}}</ion-label>
-        <button ion-button clear item-right><ion-icon name="search"></ion-icon></button>
-        
-      </ion-item>
+	<ion-item class="selectDate">
+	  <ion-label>Seleccionar Fecha</ion-label>
+	  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+	</ion-item>
+	<ion-list no-lines>
 
-    </ion-item-sliding>
- 
-  </ion-list>
- 
- 
+	<ion-item-sliding *ngFor="let garage of garages">
+	  <ion-item [ngClass]="	{itemDisponible : garage.estado === 'Disponible',
+							 itemSuReserva : garage.estado === 'Su reserva',
+							 itemReservaParcial : garage.estado === 'Reserva parcial',
+							 itemReservaCompleta : garage.estado === 'Reserva completa' }">
+		<ion-label item-left>Cochera: {{garage.garage}}</ion-label>
+		<ion-label >{{garage.estado}}</ion-label>
+		<button ion-button clear item-right><ion-icon name="search"></ion-icon></button>
+	  </ion-item>
+	</ion-item-sliding>
+
+	</ion-list> 
 </ion-content>
 
 

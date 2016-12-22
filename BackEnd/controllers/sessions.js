@@ -38,43 +38,39 @@ exports.addSession = function(req, res) {
         else{
             // Verify access
             //var LoginCtrl = require("./controllers/logins");
-            //LoginCtrl.findById(req, res);
+            //var response = LoginCtrl.findById(req, res);
 
             // Check LDAP access
 
             /*            
             ## LDAP Properties
-            ldap.url=ldap://192.168.0.16:389                                        OK
-            ldap.base=dc=softtek,dc=com                                             OK
-            ldap.fullUrl=ldap://192.168.0.16:389/dc=softtek,dc=com
+            ldap.url=ldap://192.168.0.16:389
+            ldap.base=dc=softtek,dc=com
             ldap.dn=MCS
             ldap.password=STKmcs2011
-            ldap.user.search.base=OU=Usuarios,OU=Softtek Argentina                  OK
-            ldap.user.search.filter=(sAMAccountName={0})                            OK
+            ldap.user.search.filter=(sAMAccountName={0})
             */
-/*
+
             console.log('\n\nCreating LDAP client...');
 
             // Client
             var client = ldap.createClient({
                 url: 'ldap://192.168.0.16:389'
             });
-
-            var opts = {
-                filter: '(sAMAccountName={' + username + '})',
-                scope: 'dc=softtek,dc=com'
-                //attributes: ['dn', 'sn', 'cn'] -> get all attributes
-            };
             
             // Binding
             console.log('\nBinding to LDAP Server...');
 
             client.bind('MCS', 'STKmcs2011', function (error) {
-                console.log('\nSearching "' + username + '"...');
+            //client.bind('nicolas.fernandez@softtek.com', 'Nof*2016', function (error) {
+                var opts = {
+                    filter: '(sAMAccountName=nicolas.fernandez@softtek.com)',
+                    scope: 'sub'
+                };
+
+                console.log('\nSearching...');
 
                 client.search('dc=softtek,dc=com', opts, function(err, res) {
-                    assert.ifError(err);
-
                     res.on('searchEntry', function(entry) {
                         console.log('entry: ' + JSON.stringify(entry.object));
                     });
@@ -88,22 +84,23 @@ exports.addSession = function(req, res) {
                     });
                     
                     res.on('end', function(result) {
+                        console.log('Result: ' + result);
                         console.log('status: ' + result.status);
+
+                        //Unbinding
+                        console.log('\nUnbinding to LDAP Server...');
+                        client.unbind(function(error) {
+                            if(error){
+                                console.log(error.message);
+                            } 
+                            else{
+                                console.log('Client disconnected');
+                            }
+                        });
                     });
                 });
             });
 
-            //Unbinding
-            console.log('\nUnbinding to LDAP Server...');
-            client.unbind(function(error) {
-                if(error){
-                    console.log(error.message);
-                } 
-                else{
-                    console.log('client disconnected');
-                }
-            });
-*/
             console.log('\n\nSession found: \n\n' + session);
 
             var sessionId = "";

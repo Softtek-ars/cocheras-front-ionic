@@ -1,20 +1,38 @@
 .ios, .md {
  
-  home-page {
- 
-    ion-item {
-      background-color: #FF66CC;
-      border-bottom: none !important;
-    }
- 
-    ion-label {
-      white-space: normal;
-    }
- 
-    ion-item-sliding {
-      margin: 10px;
-    }
- 
-  }
- 
+	home-page {
+		ion-item {
+		  background-color: #f37a59;
+		  border-bottom: none !important;
+		}
+
+		ion-label {
+		  background-color: transparent;
+		  white-space: normal;
+		}
+
+		ion-item-sliding {
+		  margin: 10px;
+		}
+		
+		.selectDate{
+			background-color: transparent !important;
+		}
+		
+		.itemDisponible{
+			background-color: #2ec95c !important;
+		}
+
+		.itemSuReserva{
+			background-color: #a4e6b8 !important;
+		}
+		
+		.itemReservaParcial{
+			background-color: #f8f968 !important;
+		}
+		
+		.itemReservaCompleta{
+			background-color: #f1861e !important;
+		}
+	}
 }
