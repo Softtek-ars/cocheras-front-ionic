@@ -15,8 +15,8 @@ app.use(methodOverride());
 app.use(cors());
 
 // Dependence of Controllers
+var SessionModel = require('./models/Session');
 require('./models/Login');
-require('./models/Session');
 require('./models/garage');
 
 // Controllers
@@ -26,6 +26,39 @@ var GaragesCtrl = require('./controllers/garages');
 
 // Router
 var router = express.Router();
+/*
+// Middleware to use for all requests (token validate)
+router.use(function(req, res, next) {
+    if(req.method != "OPTIONS"){
+		    if(req.headers.authorization == undefined){
+			      console.log("Without authorization");
+			      res.json(403, "forbidden 1");
+		    }
+		    else{
+			      SessionModel.find({token: req.headers.authorization}).exec(function(err, session ){
+                if(err){
+                    console.log('ERROR: ' + err.message);
+                    res.json(403, "forbidden 2");
+                }
+                else{
+                    console.log(session);
+                
+                    if(session.length > 0){
+                        next();
+                    }
+                    else{
+                        res.json(403, "forbidden 3");
+                    }
+                }
+            });
+		    }
+	  }
+	  else{
+		  next();
+	  }
+	// make sure we go to the next routes and don't stop here
+});
+*/
 
 // Route of login (GET/PUT)
 router.route("/login")
@@ -54,7 +87,7 @@ app.use("/api", router);
 // Connect to local mongodb
 mongoose.connect('mongodb://localhost/Cocheras', function(err, res) {  
   if(err) {
-    console.log('ERROR: connecting to Database. ' + err);
+    console.log('ERROR: connecting to Database. ' + err.message);
   }
 
   app.listen(8080, function() {

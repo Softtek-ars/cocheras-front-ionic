@@ -1,34 +1,32 @@
 <ion-header>
 
 <ion-navbar navbar secondary>
-  <ion-title  item-left style="display:inline-block"><img src="/assets/img/STK_150x77.jpg" width="40px" style="display:inline-block" height="40px"/></ion-title>
-
- <ion-title  item-center style="display:inline-block" >Estado de Cocheras</ion-title>
- 
+  <!--<ion-title  item-left style="display:inline-block"><img src="/assets/img/STK_150x77.jpg" width="40px" style="display:inline-block" height="40px"/></ion-title>-->
+  <ion-title  item-center style="display:inline-block" >Estado de Cocheras</ion-title>
 </ion-navbar>
 
  
 </ion-header>
  
 <ion-content>
-	<ion-item class="selectDate">
-	  <ion-label>Seleccionar Fecha</ion-label>
-	  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+	<ion-item class="labelUser">
+	  <ion-label>{{usuario}}</ion-label>
 	</ion-item>
-	<ion-list no-lines>
 
+	<ion-item class="selectDate">
+		<ion-icon name="calendar"></ion-icon>
+		<ion-datetime  displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fecha"></ion-datetime>-
+	</ion-item>
+	<ion-list>
 	<ion-item-sliding *ngFor="let garage of garages">
 	  <ion-item [ngClass]="	{itemDisponible : garage.estado === 'Disponible',
 							 itemSuReserva : garage.estado === 'Su reserva',
 							 itemReservaParcial : garage.estado === 'Reserva parcial',
 							 itemReservaCompleta : garage.estado === 'Reserva completa' }">
 		<ion-label item-left>Cochera: {{garage.garage}}</ion-label>
-		<ion-label >{{garage.estado}}</ion-label>
+		<ion-label>{{garage.estado}}</ion-label>
 		<button ion-button clear item-right><ion-icon name="search"></ion-icon></button>
 	  </ion-item>
 	</ion-item-sliding>
-
 	</ion-list> 
 </ion-content>
-
-

@@ -1,6 +1,6 @@
 .ios, .md {
  
-	home-page {
+	cocheras-page {
 		ion-item {
 		  background-color: #f37a59;
 		  border-bottom: none !important;
@@ -17,6 +17,12 @@
 		
 		.selectDate{
 			background-color: transparent !important;
+			text-align: right;
+		}
+		
+		.labelUser{
+			background-color: #edf6f7 !important;
+			text-align: center;
 		}
 		
 		.itemDisponible{

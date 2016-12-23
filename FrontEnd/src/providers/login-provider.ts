@@ -29,7 +29,7 @@ export class LoginProvider {
 		
 		var url = 'http://localhost:8080/api/session';
         var response = this.http.post(url, body).map(response => response.json());
-        
+		
 		return response;
 	}
 }

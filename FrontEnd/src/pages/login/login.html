@@ -1,32 +1,31 @@
-<ion-header>
+<ion-header class="header">
 	<ion-navbar>
 	<ion-title>Login</ion-title>
 	</ion-navbar>
-	<ion-card>
-		<ion-card-content>
-			<img src="/assets/img/logo-softtek.png" width="40px" style="display:inline-block" height="60px" alt="Softtek Logo"/>
-			<ion-card-title>
-				Inicio de Sesion
-			</ion-card-title>
-		</ion-card-content>
-	</ion-card>
 	
-	<ion-list padding>
-		<ion-item>
-		<ion-label stacked>Username</ion-label>
-		<ion-input [(ngModel)]="usuario" type="text" value=""></ion-input>
-		</ion-item>
-
-		<ion-item>
-		<ion-label stacked>Password</ion-label>
-		<ion-input [(ngModel)]="password" type="password"></ion-input>
-		</ion-item>
+	<ion-card>
+		<img src="/assets/img/logo-softtek.png" class="centerImage" alt="Softtek Logo"/>
+		<!--<img src="/assets/img/logo-softtek.png" align="center" width="40px" style="display:block" height="60px" alt="Softtek Logo"/>-->
+	</ion-card>
+	<ion-card class="cardSession">
+		<ion-card-header class="cardHeaderSession">
+			Inicio de sesion
+		</ion-card-header>
+	</ion-card>
 		
+	<ion-list padding>	
+		<ion-item>
+			<ion-label stacked>Username</ion-label>
+			<ion-input [(ngModel)]="usuario" type="text" value=""></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Password</ion-label>
+			<ion-input [(ngModel)]="password" type="password"></ion-input>
+		</ion-item>
 		<ion-item>
 		  <ion-label item-center>Guardar credenciales</ion-label>
 		  <ion-checkbox item-content color="green" checked="true"></ion-checkbox>
 		</ion-item>
-		
 		<ion-item>
 		  <button ion-button button full round (click)="login()" button-large>Ingresar</button>
 		  <button ion-button button full round (click)="exitApp()" button-large>Salir</button>
