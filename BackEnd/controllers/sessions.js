@@ -58,6 +58,10 @@ exports.addSession = function(req, res) {
                         return res.status(500).send(err.message);
                     }
                     else{
+                        // http://www.sebastianseilund.com/nodejs-async-in-practice
+                        // async.series
+                        // async.parallel
+                        
                         // Check LDAP access
 
                         /*            

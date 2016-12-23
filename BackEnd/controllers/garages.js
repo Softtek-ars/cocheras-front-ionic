@@ -3,6 +3,7 @@ var Garage = mongoose.model('Garage');
 
 //GET - Return all registers
 exports.findAll = function(req, res) {
+    debugger;
     console.log('GET /garages')
     
     Garage.find(function(err, garages) {

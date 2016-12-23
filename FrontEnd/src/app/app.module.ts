@@ -4,10 +4,12 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { CocherasPage } from '../pages/cocheras/cocheras';
+import { AddReservaPage } from '../pages/add-reserva/add-reserva';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { LoginPage } from '../pages/login/login';
 import { IndexPage } from '../pages/index/index';
+
 
 import { Garages } from '../providers/garages';
 import { LoginSharedService } from '../services/login-service';
@@ -18,6 +20,7 @@ import { LoginSharedService } from '../services/login-service';
     AboutPage,
     ContactPage,
     CocherasPage,
+	AddReservaPage,
     TabsPage,
 	LoginPage,
 	IndexPage
@@ -31,6 +34,7 @@ import { LoginSharedService } from '../services/login-service';
     AboutPage,
     ContactPage,
     CocherasPage,
+	AddReservaPage,
     TabsPage,
 	LoginPage,
 	IndexPage

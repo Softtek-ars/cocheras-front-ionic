@@ -10,12 +10,11 @@
  
 <ion-content>
 	<ion-item class="labelUser">
-	  <ion-label>{{usuario}}</ion-label>
+	  <ion-label>{{userName}}</ion-label>
 	</ion-item>
 
 	<ion-item class="selectDate">
-		<ion-icon name="calendar"></ion-icon>
-		<ion-datetime  displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fecha"></ion-datetime>-
+		<ion-datetime  displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fecha"><ion-icon name="calendar"></ion-icon></ion-datetime>-
 	</ion-item>
 	<ion-list>
 	<ion-item-sliding *ngFor="let garage of garages">
@@ -25,7 +24,7 @@
 							 itemReservaCompleta : garage.estado === 'Reserva completa' }">
 		<ion-label item-left>Cochera: {{garage.garage}}</ion-label>
 		<ion-label>{{garage.estado}}</ion-label>
-		<button ion-button clear item-right><ion-icon name="search"></ion-icon></button>
+		<button ion-button clear item-right (click)="addReserva()"><ion-icon name="search"></ion-icon></button>
 	  </ion-item>
 	</ion-item-sliding>
 	</ion-list> 

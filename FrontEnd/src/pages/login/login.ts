@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Http} from '@angular/http';
-import { Platform, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { Platform, NavController, AlertController, LoadingController } from 'ionic-angular';
 
 import { LoginProvider } from '../../providers/login-provider';
 import { TabsPage } from '../../pages/tabs/tabs';
@@ -12,17 +12,18 @@ import { LoginSharedService } from '../../services/login-service';
     providers: [LoginProvider, LoginSharedService]
 })
 export class LoginPage {
-	private usuario: string;
+	private userName: string;
 	private password: string;
 	
 	constructor(public nav: NavController, public platform: Platform, public http: Http, public loginProvider: LoginProvider, public loginSharedService: LoginSharedService, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 	}
 	
 	login() {
-		this.loginProvider.login(this.usuario, this.password).subscribe(
+		this.loginProvider.login(this.userName, this.password).subscribe(
 			data => {				
 				//Navigate to home page
-				this.nav.setRoot(TabsPage);
+				//this.nav.setRoot(TabsPage);
+				this.nav.push(TabsPage, { userName: this.userName });
 
 				//Show wait
 				this.loading();

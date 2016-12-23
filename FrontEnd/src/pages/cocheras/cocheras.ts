@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { Garages } from '../../providers/garages';
+import { AddReservaPage } from '../add-reserva/add-reserva';
 
 import { LoginSharedService } from '../../services/login-service';
  
@@ -11,13 +12,17 @@ import { LoginSharedService } from '../../services/login-service';
 })
 export class CocherasPage {
 	garages: any;
-	usuario: string;
+	userName: string;
 	fecha: Date;
  
-	constructor(public nav: NavController, public garageService: Garages, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public loginSharedservice: LoginSharedService) {
-		this.usuario = this.loginSharedservice.getUserName();
-		this.usuario = 'Emiliano Dato';
+	constructor(public nav: NavController, public garageService: Garages, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public loginSharedservice: LoginSharedService, public params: NavParams) {
+		this.userName = params.get('userName');
 		this.fecha = new Date();
+	}
+ 
+	addReserva(){
+		//Navigate to AddReservaPage
+		this.nav.push(AddReservaPage)
 	}
  
 	ionViewDidLoad(){
