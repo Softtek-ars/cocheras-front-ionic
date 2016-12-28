@@ -60,7 +60,7 @@ export class LoginPage {
 	showConfirmExit() {
 		let confirm = this.alertCtrl.create({
 		  title: 'Confirmacion',
-		  message: '¿Esta seguro que desea salir del sistema?',
+		  message: 'ï¿½Esta seguro que desea salir del sistema?',
 		  buttons: [
 			{
 			  text: 'Salir',
