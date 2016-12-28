@@ -9,7 +9,7 @@ import { ContactPage } from '../contact/contact';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  userName: string;
+  credentials: any;
   
   // this tells the tabs component which Pages
   // should be each tab's root Page
@@ -18,6 +18,6 @@ export class TabsPage {
   tab3Root: any = ContactPage;
 
   constructor(public params: NavParams) {
-	this.userName = params.data;
+	this.credentials = params.data
   }
 }
