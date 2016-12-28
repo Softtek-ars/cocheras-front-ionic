@@ -1,36 +1,26 @@
 import { Component } from '@angular/core';
 import {Http} from '@angular/http';
-import { Platform, NavController, AlertController, LoadingController } from 'ionic-angular';
+import { Platform, NavController, AlertController } from 'ionic-angular';
 
 import { LoginProvider } from '../../providers/login-provider';
 import { TabsPage } from '../../pages/tabs/tabs';
 
-import { LoginSharedService } from '../../services/login-service';
-
 @Component({
     templateUrl: 'login.html',
-    providers: [LoginProvider, LoginSharedService]
+    providers: [LoginProvider]
 })
 export class LoginPage {
 	private userName: string;
 	private password: string;
 	
-	constructor(public nav: NavController, public platform: Platform, public http: Http, public loginProvider: LoginProvider, public loginSharedService: LoginSharedService, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+	constructor(public nav: NavController, public platform: Platform, public http: Http, public loginProvider: LoginProvider, public alertCtrl: AlertController) {
 	}
 	
 	login() {
 		this.loginProvider.login(this.userName, this.password).subscribe(
-			data => {				
-				//Navigate to home page
-				//this.nav.setRoot(TabsPage);
-				this.nav.push(TabsPage, { userName: this.userName });
-
-				//Show wait
-				this.loading();
-				
-				this.loginSharedService.setUserId('nicolas.fernandez');
-				this.loginSharedService.setUserName('Nof');
-				this.loginSharedService.setAuthorization('token.ring');
+			data => {
+				//Navigate to Tabs Page
+				this.nav.push(TabsPage, { userName: data.username, authorization: data.token });
             },
 			err => {
 				console.log(err);			
@@ -78,16 +68,5 @@ export class LoginPage {
 		});
 		
 		confirm.present();
-	}
-	
-	 //Show loading...
-	loading(){
-		let loader = this.loadingCtrl.create({
-			content: "Espere por favor...",
-			spinner: 'bubbles',
-			duration: 1000
-		});
-
-		loader.present();
 	}
 }

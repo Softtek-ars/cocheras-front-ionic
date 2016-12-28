@@ -12,7 +12,6 @@ import { IndexPage } from '../pages/index/index';
 
 
 import { Garages } from '../providers/garages';
-import { LoginSharedService } from '../services/login-service';
 
 @NgModule({
   declarations: [
@@ -39,6 +38,6 @@ import { LoginSharedService } from '../services/login-service';
 	LoginPage,
 	IndexPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Garages, LoginSharedService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Garages]
 })
 export class AppModule {}

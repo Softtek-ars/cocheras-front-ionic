@@ -4,31 +4,24 @@ import 'rxjs/add/operator/map';
  
 @Injectable()
 export class Garages { 
+	headers: Headers;
 	data: any;
 
 	constructor(public http: Http) {
 		this.data = null;
 	}
 
-	getGarages(){
-		/*
-		if (this.data) {
-		return Promise.resolve(this.data);
-		}
-
-		return new Promise(resolve => {
-
-		this.http.get('http://localhost:8095/api/garages')
-		.map(res => res.json())
-		.subscribe(data => {
-		this.data = data;
-		resolve(this.data);
-		});
-		});
-		*/
-		
+	// TODO: $http.defaults.headers.common.Authorization = result.token;
+	
+	getGarages(authorization: string, date: Date){
+		//var url = 'http://localhost:8080/api/garages/' + date;
 		var url = 'http://localhost:8080/api/garages';
-        var response = this.http.get(url).map(response => response.json());
+		
+		// Send authorization
+		this.headers = new Headers();
+		this.headers.append('authorization', authorization);
+		
+        var response = this.http.get(url, { headers: this.headers}).map(response => response.json());
         
 		return response;
 	}
