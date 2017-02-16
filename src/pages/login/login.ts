@@ -20,7 +20,7 @@ export class LoginPage {
 		this.loginProvider.login(this.userName, this.password).subscribe(
 			data => {
 				//Navigate to Tabs Page
-				this.nav.push(TabsPage, { userName: data.username, authorization: data.token });
+				this.nav.push(TabsPage, { userName: data.userName, authorization: data.token });
             },
 			err => {
 				console.log(err);			
@@ -38,7 +38,7 @@ export class LoginPage {
 	// Alert
 	showIncorrectLogin() {
 		let alert = this.alertCtrl.create({
-		  title: 'Inicion de sesion',
+		  title: 'Inicio de sesion',
 		  message: 'Las credenciales ingresadas no son validas',
 		  buttons: ['Aceptar']
 		});
@@ -50,7 +50,7 @@ export class LoginPage {
 	showConfirmExit() {
 		let confirm = this.alertCtrl.create({
 		  title: 'Confirmacion',
-		  message: '�Esta seguro que desea salir del sistema?',
+		  message: '¿Esta seguro que desea salir del sistema?',
 		  buttons: [
 			{
 			  text: 'Salir',
